@@ -26,7 +26,7 @@ class Tweet {
 
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
-        if (this.text.includes("TomTom MySpots Watch")){
+        if (this.text.includes("TomTom MySports Watch")){
             return false;
         }
         if (this.text.includes(" - ")){
@@ -60,14 +60,25 @@ class Tweet {
             return "unknown";
         }
         let rest = this.text.substring(index+4);
+        let withIndex = rest.indexOf(" with");
+        let dash = rest.indexOf(" - ");
         let end = rest.indexOf(" with");
-        if(end == -1){
-            end = rest.indexOf(" - ");
+
+        if(withIndex!= -1 && dash != -1){
+            end = Math.min(withIndex, dash);
         }
+        else if(withIndex!= -1){
+            end = withIndex;
+        }
+        else{
+            end = dash;
+        }
+
         if(end == -1){
-            return rest.trim();
+            return rest.trim()
         }
         return rest.substring(0, end).trim()
+
         //TODO: parse the activity type from the text of the tweet
     }
 
