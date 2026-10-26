@@ -10,13 +10,13 @@ class Tweet {
 	//returns either 'live_event', 'achievement', 'completed_event', or 'miscellaneous'
     get source():string {
         //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous.
-        if (this.text.startsWith("Just completed a")){
+        if (this.text.startsWith("Just completed a") ||this.text.startsWith("Just posted a") ){
             return 'completed_event';
         }
-        else if(this.text.startsWith('Right now, I am')||this.text.startsWith('Watch my live')){
+        else if(this.text.startsWith('Watch my')){
             return 'live_event';
         }
-        else if(this.text.startsWith('Achieved a')|| this.text.includes('goal')){
+        else if(this.text.startsWith('Achieved a')|| this.text.startsWith('Goal achieved')){
             return 'achievement';
         }
         else{

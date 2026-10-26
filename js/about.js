@@ -63,8 +63,8 @@ function parseTweets(runkeeper_tweets) {
 	document.querySelector('.miscellaneous').innerText = miscCount;
 	document.querySelector('.miscellaneousPct').innerText = (miscCount / total * 100).toFixed(2) + '%';
 
-	document.querySelector('.written').innerText = writtenCompletedCount;
-	document.querySelector('.writtenPct').innerText = (writtenCompletedCount / completedCount * 100).toFixed(2) + '%';
+	document.querySelector('.written').innerText = writtenCount;
+	document.querySelector('.writtenPct').innerText = (writtenCount / completedCount * 100).toFixed(2) + '%';
 }
 //Wait for the DOM to load
 document.addEventListener('DOMContentLoaded', function (event) {
