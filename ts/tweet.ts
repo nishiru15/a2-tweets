@@ -52,8 +52,23 @@ class Tweet {
         if (this.source != 'completed_event') {
             return "unknown";
         }
+        let index = this.text.indexOf( " km ");
+        if(index == -1){
+            index= this.text.indexOf(" mi ");
+        }
+        if(index == -1){
+            return "unknown";
+        }
+        let rest = this.text.substring(index+4);
+        let end = rest.indexOf(" with");
+        if(end == -1){
+            end = rest.indexOf(" - ");
+        }
+        if(end == -1){
+            return rest.trim();
+        }
+        return rest.substring(0, end).trim()
         //TODO: parse the activity type from the text of the tweet
-        return "";
     }
 
     get distance():number {
