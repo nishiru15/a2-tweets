@@ -16,7 +16,7 @@ class Tweet {
         else if(this.text.startsWith('Watch my')){
             return 'live_event';
         }
-        else if(this.text.startsWith('Achieved a')|| this.text.startsWith('Goal achieved')){
+        else if(this.text.startsWith('Achieved a')|| this.text.startsWith('Goal achieved')|| this.text.startsWith('I just set a goal')){
             return 'achievement';
         }
         else{
@@ -40,8 +40,12 @@ class Tweet {
         if(!this.written) {
             return "";
         }
+        let index = this.text.indexOf(" - ");
+        let written = this.text.substring(index + 3);
+        written = written.replace(/https?:\/\/\S+/g, "");
+        written = written.replace("#Runkeeper", "");
         //TODO: parse the written text from the tweet
-        return "";
+        return written.trim();
     }
 
     get activityType():string {
