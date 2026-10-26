@@ -75,8 +75,23 @@ class Tweet {
         if(this.source != 'completed_event') {
             return 0;
         }
+        let km = true;
+        let index = this.text.indexOf( " km ");
+        if(index == -1){
+            index = this.text.indexOf(" mi ");
+            km = false;
+        }
+        if(index == -1){
+            return 0;
+        }
+
+        let words = this.text.substring(0, index).split(" ");
+        let number = parseFloat(words[words.length-1]);
+        if(km){
+            number = number/1.609;
+        }
+        return number
         //TODO: prase the distance from the text of the tweet
-        return 0;
     }
 
     getHTMLTableRow(rowNumber:number):string {
