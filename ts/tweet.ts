@@ -111,6 +111,6 @@ class Tweet {
         //returns a table row which summarizes the tweet with a clickable link to the RunKeeper activity
         let linkedText = this.text.replace(/(https?:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>');
 
-        return "<tr></tr>" + rowNumber + "</td><td>" + this.activityType + "</td><td>" + linkedText + "</td></tr>";
+        return "<tr></td>" + rowNumber + "</td><td>" + this.activityType + "</td><td>" + linkedText + "</td></tr>";
     }
 }
