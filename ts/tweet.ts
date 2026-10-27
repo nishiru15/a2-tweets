@@ -9,7 +9,7 @@ class Tweet {
 
 	//returns either 'live_event', 'achievement', 'completed_event', or 'miscellaneous'
     get source():string {
-        //TODO: identify whether the source is a live event, an achievement, a completed event, or miscellaneous.
+        //identifies whether the source is a live event, an achievement, a completed event, or miscellaneous.
         if (this.text.startsWith("Just completed a") ||this.text.startsWith("Just posted a") ){
             return 'completed_event';
         }
@@ -26,17 +26,19 @@ class Tweet {
 
     //returns a boolean, whether the text includes any content written by the person tweeting.
     get written():boolean {
+        //identies whether the tweet is written
+
         if (this.text.includes("TomTom MySports Watch")){
             return false;
         }
         if (this.text.includes(" - ")){
             return true;
         }
-        //TODO: identify whether the tweet is written
         return false;
     }
 
     get writtenText():string {
+        //parses the written text from the tweet        
         if(!this.written) {
             return "";
         }
@@ -44,11 +46,12 @@ class Tweet {
         let written = this.text.substring(index + 3);
         written = written.replace(/https?:\/\/\S+/g, "");
         written = written.replace("#Runkeeper", "");
-        //TODO: parse the written text from the tweet
+
         return written.trim();
     }
 
     get activityType():string {
+        //parses the activity type from the text of the tweet
         if (this.source != 'completed_event') {
             return "unknown";
         }
@@ -79,10 +82,10 @@ class Tweet {
         }
         return rest.substring(0, end).trim()
 
-        //TODO: parse the activity type from the text of the tweet
     }
 
     get distance():number {
+        //parses the distance from the text of the tweet
         if(this.source != 'completed_event') {
             return 0;
         }
@@ -102,11 +105,10 @@ class Tweet {
             number = number/1.609;
         }
         return number
-        //TODO: prase the distance from the text of the tweet
     }
 
     getHTMLTableRow(rowNumber:number):string {
-        //TODO: return a table row which summarizes the tweet with a clickable link to the RunKeeper activity
+        //returns a table row which summarizes the tweet with a clickable link to the RunKeeper activity
         let linkedText = this.text.replace(/(https?:\/\/\S+)/g, '<a href="$1" target="_blank">$1</a>');
 
         return "<tr></tr>" + rowNumber + "</td><td>" + this.activityType + "</td><td>" + linkedText + "</td></tr>";

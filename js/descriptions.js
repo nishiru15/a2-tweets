@@ -7,13 +7,13 @@ function parseTweets(runkeeper_tweets) {
 		return;
 	}
 
-	//TODO: Filter to just the written tweets
+	//Filter to just the written tweets
 	written_tweets = runkeeper_tweets.map(tweet => new Tweet(tweet.text, tweet.created_at)).filter(tweet => tweet.written);
 	update()
 }
 
 function update(){
-	//DO THIS
+	//filters user written text by the text in the search, and changes the table with the results
 	const searchText =  document.getElementById('textFilter').value;
 	const table = document.getElementById('tweetTable');
 	document.getElementById('searchText').innerText = searchText;
@@ -33,7 +33,7 @@ function update(){
 }
 
 function addEventHandlerForSearch() {
-	//TODO: Search the written tweets as text is entered into the search box, and add them to the table
+	//Search the written tweets as text is entered into the search box, and add them to the table
 	document.getElementById('textFilter').addEventListener('input', update);
 }
 
