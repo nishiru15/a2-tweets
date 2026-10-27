@@ -44,13 +44,13 @@ function parseTweets(runkeeper_tweets) {
 	};
 	vegaEmbed('#activityVis', activity_vis_spec, {actions:false});
 
-	const topThree = activityData.slice(0,3).map(d=>d.activityType);
-	const dayNames =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+	const top = activityData.slice(0,3).map(d=>d.activityType);
+	const days =['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-	const distanceData = completed.filter(tweet => topThree.includes(tweet.activityType)).map(function(tweet){ return{
+	const distanceData = completed.filter(tweet => top.includes(tweet.activityType)).map(function(tweet){ return{
 		activityType: tweet.activityType,
 		distance: tweet.distance,
-		day: dayNames[tweet.time.getDay()]
+		day: days[tweet.time.getDay()]
 	};
 });
 	//create the visualizations which group the three most-tweeted activities by the day of the week.
@@ -61,7 +61,7 @@ function parseTweets(runkeeper_tweets) {
 		"data": {"values": distanceData},
 		"mark": "point",
 		"encoding": {
-	    	"x": {"field": "day", "type": "ordinal", "sort": dayNames, "title": "Day of the week"},
+	    	"x": {"field": "day", "type": "ordinal", "sort": days, "title": "Day of the week"},
 	    	"y": {"field": "distance", "type": "quantitative", "title": "Distance (miles)"},
 	    	"color": {"field": "activityType", "type": "nominal", "title": "Activity type"}
 	  }
@@ -73,7 +73,7 @@ function parseTweets(runkeeper_tweets) {
 		"data": {"values": distanceData},
 		"mark": "point",
 		"encoding": {
-			"x": {"field": "day", "type": "ordinal", "sort": dayNames, "title": "Day of the week"},
+			"x": {"field": "day", "type": "ordinal", "sort": days, "title": "Day of the week"},
 			"y": {"field": "distance", "type": "quantitative", "aggregate": "mean", "title": "Mean distance (miles)"},
 			"color": {"field": "activityType", "type": "nominal", "title": "Activity type"}	
 		}
