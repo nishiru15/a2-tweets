@@ -1,3 +1,5 @@
+let written_tweets = [];
+
 function parseTweets(runkeeper_tweets) {
 	//Do not proceed if no tweets loaded
 	if(runkeeper_tweets === undefined) {
@@ -6,6 +8,12 @@ function parseTweets(runkeeper_tweets) {
 	}
 
 	//TODO: Filter to just the written tweets
+	written_tweets = runkeeper_tweets.map(tweet => new Tweet(tweet.text, tweet.created_at))..filter(tweet => tweet.written);
+	update()
+}
+
+function update(){
+	//DO THIS
 }
 
 function addEventHandlerForSearch() {
