@@ -80,6 +80,28 @@ function parseTweets(runkeeper_tweets) {
 		}
 	};
 	vegaEmbed('#distanceVisAggregated', distance_vis_agg_spec, {actions:false});
+	const distanceVis = document.getElementById('distanceVis');
+	const distanceVisAggregated = document.getElementById('distanceVisAggregated');
+	const button = document.getElementById('aggregate');
+
+	distanceVisAggregated.style.display = 'none';
+
+	button.addEventListener('click', function(){
+		if (distanceVisAggregated.style.display == 'none') {
+			distanceVisAggregated.style.display = 'block';
+			distanceVis.style.display= 'none';
+			button.innderText = 'Show all activities';
+			}
+		else{
+			distanceVis.style.display = 'block';
+			distanceVisAggregated.style.display = 'none';
+			button.innerText= 'Show means';
+		}
+	});
+	document.getElementById('longestActivityType').innerText = 'bike';
+	document.getElementById('shortestActivityType').innerText = 'walk';
+	document.getElementById('weekdayOrWeekendLonger').innerText = 'weekends';
+
 }
 //Wait for the DOM to load
 document.addEventListener('DOMContentLoaded', function (event) {
